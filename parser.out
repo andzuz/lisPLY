@@ -1,0 +1,1532 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NIL
+    NULLS
+    NOT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> ID EQUAL list
+Rule 2     program -> list
+Rule 3     list -> arith_operation
+Rule 4     list -> print_operation
+Rule 5     list -> list_operation
+Rule 6     list -> car_operation
+Rule 7     list -> cdr_operation
+Rule 8     list -> define_variable_operation
+Rule 9     list -> comparison_operation
+Rule 10    list -> cons_operation
+Rule 11    list -> conditional_operation
+Rule 12    arith_operation -> LPAREN arith_operator arith_items RPAREN
+Rule 13    arith_operator -> ADD
+Rule 14    arith_operator -> SUB
+Rule 15    arith_operator -> MULT
+Rule 16    arith_operator -> DIV
+Rule 17    arith_operator -> POW
+Rule 18    arith_items -> arith_item arith_items
+Rule 19    arith_items -> empty
+Rule 20    empty -> <empty>
+Rule 21    arith_item -> NUMBER
+Rule 22    arith_item -> arith_operation
+Rule 23    list_operation -> LPAREN LIST list_items RPAREN
+Rule 24    list_items -> list_item list_items
+Rule 25    list_items -> empty
+Rule 26    list_item -> TEXT
+Rule 27    list_item -> NUMBER
+Rule 28    list_item -> quoted_list
+Rule 29    list_item -> TRUE
+Rule 30    list_item -> FALSE
+Rule 31    quoted_list -> QUOTE LPAREN list_items RPAREN
+Rule 32    car_operation -> LPAREN CAR quoted_list RPAREN
+Rule 33    cdr_operation -> LPAREN CDR quoted_list RPAREN
+Rule 34    define_variable_operation -> LPAREN DEFINE ID variable_value RPAREN
+Rule 35    variable_value -> TEXT
+Rule 36    variable_value -> NUMBER
+Rule 37    variable_value -> TRUE
+Rule 38    variable_value -> FALSE
+Rule 39    comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN
+Rule 40    comp_item -> TEXT
+Rule 41    comp_item -> NUMBER
+Rule 42    comp_item -> TRUE
+Rule 43    comp_item -> FALSE
+Rule 44    comp_item -> length_operation
+Rule 45    comp_item -> ID
+Rule 46    comp_operator -> EQUAL
+Rule 47    comp_operator -> EQ
+Rule 48    comp_operator -> GTHAN
+Rule 49    comp_operator -> LTHAN
+Rule 50    comp_operator -> GEQUAL
+Rule 51    comp_operator -> LEQUAL
+Rule 52    conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN
+Rule 53    conditional_item -> arith_operation
+Rule 54    conditional_item -> conditional_operation
+Rule 55    conditional_item -> NUMBER
+Rule 56    conditional_item -> TEXT
+Rule 57    conditional_item -> TRUE
+Rule 58    conditional_item -> FALSE
+Rule 59    conditional_item -> print_operation
+Rule 60    conditional_item -> empty
+Rule 61    conditional_item -> ID
+Rule 62    length_operation -> LPAREN LENGTH TEXT RPAREN
+Rule 63    length_operation -> LPAREN LENGTH quoted_list RPAREN
+Rule 64    print_operation -> LPAREN PRINT TEXT RPAREN
+Rule 65    cons_operation -> LPAREN CONS cons_items RPAREN
+Rule 66    cons_items -> cons_item cons_items
+Rule 67    cons_items -> empty
+Rule 68    cons_item -> TEXT
+Rule 69    cons_item -> NUMBER
+Rule 70    cons_item -> TRUE
+Rule 71    cons_item -> FALSE
+Rule 72    cons_item -> cons_operation
+
+Terminals, with rules where they appear
+
+ADD                  : 13
+CAR                  : 32
+CDR                  : 33
+CONS                 : 65
+DEFINE               : 34
+DIV                  : 16
+EQ                   : 47
+EQUAL                : 1 46
+FALSE                : 30 38 43 58 71
+GEQUAL               : 50
+GTHAN                : 48
+ID                   : 1 34 45 61
+IF                   : 52
+LENGTH               : 62 63
+LEQUAL               : 51
+LIST                 : 23
+LPAREN               : 12 23 31 32 33 34 39 52 62 63 64 65
+LTHAN                : 49
+MULT                 : 15
+NIL                  : 
+NOT                  : 
+NULLS                : 
+NUMBER               : 21 27 36 41 55 69
+POW                  : 17
+PRINT                : 64
+QUOTE                : 31
+RPAREN               : 12 23 31 32 33 34 39 52 62 63 64 65
+SUB                  : 14
+TEXT                 : 26 35 40 56 62 64 68
+TRUE                 : 29 37 42 57 70
+error                : 
+
+Nonterminals, with rules where they appear
+
+arith_item           : 18
+arith_items          : 12 18
+arith_operation      : 3 22 53
+arith_operator       : 12
+car_operation        : 6
+cdr_operation        : 7
+comp_item            : 39 39
+comp_operator        : 39
+comparison_operation : 9 52
+conditional_item     : 52 52
+conditional_operation : 11 54
+cons_item            : 66
+cons_items           : 65 66
+cons_operation       : 10 72
+define_variable_operation : 8
+empty                : 19 25 60 67
+length_operation     : 44
+list                 : 1 2
+list_item            : 24
+list_items           : 23 24 31
+list_operation       : 5
+print_operation      : 4 59
+program              : 0
+quoted_list          : 28 32 33 63
+variable_value       : 34
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . ID EQUAL list
+    (2) program -> . list
+    (3) list -> . arith_operation
+    (4) list -> . print_operation
+    (5) list -> . list_operation
+    (6) list -> . car_operation
+    (7) list -> . cdr_operation
+    (8) list -> . define_variable_operation
+    (9) list -> . comparison_operation
+    (10) list -> . cons_operation
+    (11) list -> . conditional_operation
+    (12) arith_operation -> . LPAREN arith_operator arith_items RPAREN
+    (64) print_operation -> . LPAREN PRINT TEXT RPAREN
+    (23) list_operation -> . LPAREN LIST list_items RPAREN
+    (32) car_operation -> . LPAREN CAR quoted_list RPAREN
+    (33) cdr_operation -> . LPAREN CDR quoted_list RPAREN
+    (34) define_variable_operation -> . LPAREN DEFINE ID variable_value RPAREN
+    (39) comparison_operation -> . LPAREN comp_operator comp_item comp_item RPAREN
+    (65) cons_operation -> . LPAREN CONS cons_items RPAREN
+    (52) conditional_operation -> . LPAREN IF comparison_operation conditional_item conditional_item RPAREN
+
+    ID              shift and go to state 10
+    LPAREN          shift and go to state 7
+
+    program                        shift and go to state 8
+    print_operation                shift and go to state 3
+    arith_operation                shift and go to state 1
+    list_operation                 shift and go to state 5
+    car_operation                  shift and go to state 2
+    define_variable_operation      shift and go to state 11
+    cons_operation                 shift and go to state 4
+    list                           shift and go to state 12
+    comparison_operation           shift and go to state 6
+    conditional_operation          shift and go to state 9
+    cdr_operation                  shift and go to state 13
+
+state 1
+
+    (3) list -> arith_operation .
+
+    $end            reduce using rule 3 (list -> arith_operation .)
+
+
+state 2
+
+    (6) list -> car_operation .
+
+    $end            reduce using rule 6 (list -> car_operation .)
+
+
+state 3
+
+    (4) list -> print_operation .
+
+    $end            reduce using rule 4 (list -> print_operation .)
+
+
+state 4
+
+    (10) list -> cons_operation .
+
+    $end            reduce using rule 10 (list -> cons_operation .)
+
+
+state 5
+
+    (5) list -> list_operation .
+
+    $end            reduce using rule 5 (list -> list_operation .)
+
+
+state 6
+
+    (9) list -> comparison_operation .
+
+    $end            reduce using rule 9 (list -> comparison_operation .)
+
+
+state 7
+
+    (12) arith_operation -> LPAREN . arith_operator arith_items RPAREN
+    (64) print_operation -> LPAREN . PRINT TEXT RPAREN
+    (23) list_operation -> LPAREN . LIST list_items RPAREN
+    (32) car_operation -> LPAREN . CAR quoted_list RPAREN
+    (33) cdr_operation -> LPAREN . CDR quoted_list RPAREN
+    (34) define_variable_operation -> LPAREN . DEFINE ID variable_value RPAREN
+    (39) comparison_operation -> LPAREN . comp_operator comp_item comp_item RPAREN
+    (65) cons_operation -> LPAREN . CONS cons_items RPAREN
+    (52) conditional_operation -> LPAREN . IF comparison_operation conditional_item conditional_item RPAREN
+    (13) arith_operator -> . ADD
+    (14) arith_operator -> . SUB
+    (15) arith_operator -> . MULT
+    (16) arith_operator -> . DIV
+    (17) arith_operator -> . POW
+    (46) comp_operator -> . EQUAL
+    (47) comp_operator -> . EQ
+    (48) comp_operator -> . GTHAN
+    (49) comp_operator -> . LTHAN
+    (50) comp_operator -> . GEQUAL
+    (51) comp_operator -> . LEQUAL
+
+    PRINT           shift and go to state 15
+    LIST            shift and go to state 22
+    CAR             shift and go to state 23
+    CDR             shift and go to state 30
+    DEFINE          shift and go to state 33
+    CONS            shift and go to state 21
+    IF              shift and go to state 17
+    ADD             shift and go to state 27
+    SUB             shift and go to state 25
+    MULT            shift and go to state 28
+    DIV             shift and go to state 19
+    POW             shift and go to state 26
+    EQUAL           shift and go to state 14
+    EQ              shift and go to state 18
+    GTHAN           shift and go to state 31
+    LTHAN           shift and go to state 16
+    GEQUAL          shift and go to state 29
+    LEQUAL          shift and go to state 20
+
+    comp_operator                  shift and go to state 24
+    arith_operator                 shift and go to state 32
+
+state 8
+
+    (0) S' -> program .
+
+
+
+state 9
+
+    (11) list -> conditional_operation .
+
+    $end            reduce using rule 11 (list -> conditional_operation .)
+
+
+state 10
+
+    (1) program -> ID . EQUAL list
+
+    EQUAL           shift and go to state 34
+
+
+state 11
+
+    (8) list -> define_variable_operation .
+
+    $end            reduce using rule 8 (list -> define_variable_operation .)
+
+
+state 12
+
+    (2) program -> list .
+
+    $end            reduce using rule 2 (program -> list .)
+
+
+state 13
+
+    (7) list -> cdr_operation .
+
+    $end            reduce using rule 7 (list -> cdr_operation .)
+
+
+state 14
+
+    (46) comp_operator -> EQUAL .
+
+    TEXT            reduce using rule 46 (comp_operator -> EQUAL .)
+    NUMBER          reduce using rule 46 (comp_operator -> EQUAL .)
+    TRUE            reduce using rule 46 (comp_operator -> EQUAL .)
+    FALSE           reduce using rule 46 (comp_operator -> EQUAL .)
+    ID              reduce using rule 46 (comp_operator -> EQUAL .)
+    LPAREN          reduce using rule 46 (comp_operator -> EQUAL .)
+
+
+state 15
+
+    (64) print_operation -> LPAREN PRINT . TEXT RPAREN
+
+    TEXT            shift and go to state 35
+
+
+state 16
+
+    (49) comp_operator -> LTHAN .
+
+    TEXT            reduce using rule 49 (comp_operator -> LTHAN .)
+    NUMBER          reduce using rule 49 (comp_operator -> LTHAN .)
+    TRUE            reduce using rule 49 (comp_operator -> LTHAN .)
+    FALSE           reduce using rule 49 (comp_operator -> LTHAN .)
+    ID              reduce using rule 49 (comp_operator -> LTHAN .)
+    LPAREN          reduce using rule 49 (comp_operator -> LTHAN .)
+
+
+state 17
+
+    (52) conditional_operation -> LPAREN IF . comparison_operation conditional_item conditional_item RPAREN
+    (39) comparison_operation -> . LPAREN comp_operator comp_item comp_item RPAREN
+
+    LPAREN          shift and go to state 37
+
+    comparison_operation           shift and go to state 36
+
+state 18
+
+    (47) comp_operator -> EQ .
+
+    TEXT            reduce using rule 47 (comp_operator -> EQ .)
+    NUMBER          reduce using rule 47 (comp_operator -> EQ .)
+    TRUE            reduce using rule 47 (comp_operator -> EQ .)
+    FALSE           reduce using rule 47 (comp_operator -> EQ .)
+    ID              reduce using rule 47 (comp_operator -> EQ .)
+    LPAREN          reduce using rule 47 (comp_operator -> EQ .)
+
+
+state 19
+
+    (16) arith_operator -> DIV .
+
+    NUMBER          reduce using rule 16 (arith_operator -> DIV .)
+    LPAREN          reduce using rule 16 (arith_operator -> DIV .)
+    RPAREN          reduce using rule 16 (arith_operator -> DIV .)
+
+
+state 20
+
+    (51) comp_operator -> LEQUAL .
+
+    TEXT            reduce using rule 51 (comp_operator -> LEQUAL .)
+    NUMBER          reduce using rule 51 (comp_operator -> LEQUAL .)
+    TRUE            reduce using rule 51 (comp_operator -> LEQUAL .)
+    FALSE           reduce using rule 51 (comp_operator -> LEQUAL .)
+    ID              reduce using rule 51 (comp_operator -> LEQUAL .)
+    LPAREN          reduce using rule 51 (comp_operator -> LEQUAL .)
+
+
+state 21
+
+    (65) cons_operation -> LPAREN CONS . cons_items RPAREN
+    (66) cons_items -> . cons_item cons_items
+    (67) cons_items -> . empty
+    (68) cons_item -> . TEXT
+    (69) cons_item -> . NUMBER
+    (70) cons_item -> . TRUE
+    (71) cons_item -> . FALSE
+    (72) cons_item -> . cons_operation
+    (20) empty -> .
+    (65) cons_operation -> . LPAREN CONS cons_items RPAREN
+
+    TEXT            shift and go to state 38
+    NUMBER          shift and go to state 39
+    TRUE            shift and go to state 44
+    FALSE           shift and go to state 41
+    RPAREN          reduce using rule 20 (empty -> .)
+    LPAREN          shift and go to state 43
+
+    cons_operation                 shift and go to state 42
+    cons_items                     shift and go to state 40
+    cons_item                      shift and go to state 46
+    empty                          shift and go to state 45
+
+state 22
+
+    (23) list_operation -> LPAREN LIST . list_items RPAREN
+    (24) list_items -> . list_item list_items
+    (25) list_items -> . empty
+    (26) list_item -> . TEXT
+    (27) list_item -> . NUMBER
+    (28) list_item -> . quoted_list
+    (29) list_item -> . TRUE
+    (30) list_item -> . FALSE
+    (20) empty -> .
+    (31) quoted_list -> . QUOTE LPAREN list_items RPAREN
+
+    TEXT            shift and go to state 55
+    NUMBER          shift and go to state 50
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 47
+    RPAREN          reduce using rule 20 (empty -> .)
+    QUOTE           shift and go to state 52
+
+    list_item                      shift and go to state 51
+    quoted_list                    shift and go to state 49
+    list_items                     shift and go to state 53
+    empty                          shift and go to state 54
+
+state 23
+
+    (32) car_operation -> LPAREN CAR . quoted_list RPAREN
+    (31) quoted_list -> . QUOTE LPAREN list_items RPAREN
+
+    QUOTE           shift and go to state 52
+
+    quoted_list                    shift and go to state 56
+
+state 24
+
+    (39) comparison_operation -> LPAREN comp_operator . comp_item comp_item RPAREN
+    (40) comp_item -> . TEXT
+    (41) comp_item -> . NUMBER
+    (42) comp_item -> . TRUE
+    (43) comp_item -> . FALSE
+    (44) comp_item -> . length_operation
+    (45) comp_item -> . ID
+    (62) length_operation -> . LPAREN LENGTH TEXT RPAREN
+    (63) length_operation -> . LPAREN LENGTH quoted_list RPAREN
+
+    TEXT            shift and go to state 64
+    NUMBER          shift and go to state 60
+    TRUE            shift and go to state 58
+    FALSE           shift and go to state 61
+    ID              shift and go to state 57
+    LPAREN          shift and go to state 63
+
+    length_operation               shift and go to state 62
+    comp_item                      shift and go to state 59
+
+state 25
+
+    (14) arith_operator -> SUB .
+
+    NUMBER          reduce using rule 14 (arith_operator -> SUB .)
+    LPAREN          reduce using rule 14 (arith_operator -> SUB .)
+    RPAREN          reduce using rule 14 (arith_operator -> SUB .)
+
+
+state 26
+
+    (17) arith_operator -> POW .
+
+    NUMBER          reduce using rule 17 (arith_operator -> POW .)
+    LPAREN          reduce using rule 17 (arith_operator -> POW .)
+    RPAREN          reduce using rule 17 (arith_operator -> POW .)
+
+
+state 27
+
+    (13) arith_operator -> ADD .
+
+    NUMBER          reduce using rule 13 (arith_operator -> ADD .)
+    LPAREN          reduce using rule 13 (arith_operator -> ADD .)
+    RPAREN          reduce using rule 13 (arith_operator -> ADD .)
+
+
+state 28
+
+    (15) arith_operator -> MULT .
+
+    NUMBER          reduce using rule 15 (arith_operator -> MULT .)
+    LPAREN          reduce using rule 15 (arith_operator -> MULT .)
+    RPAREN          reduce using rule 15 (arith_operator -> MULT .)
+
+
+state 29
+
+    (50) comp_operator -> GEQUAL .
+
+    TEXT            reduce using rule 50 (comp_operator -> GEQUAL .)
+    NUMBER          reduce using rule 50 (comp_operator -> GEQUAL .)
+    TRUE            reduce using rule 50 (comp_operator -> GEQUAL .)
+    FALSE           reduce using rule 50 (comp_operator -> GEQUAL .)
+    ID              reduce using rule 50 (comp_operator -> GEQUAL .)
+    LPAREN          reduce using rule 50 (comp_operator -> GEQUAL .)
+
+
+state 30
+
+    (33) cdr_operation -> LPAREN CDR . quoted_list RPAREN
+    (31) quoted_list -> . QUOTE LPAREN list_items RPAREN
+
+    QUOTE           shift and go to state 52
+
+    quoted_list                    shift and go to state 65
+
+state 31
+
+    (48) comp_operator -> GTHAN .
+
+    TEXT            reduce using rule 48 (comp_operator -> GTHAN .)
+    NUMBER          reduce using rule 48 (comp_operator -> GTHAN .)
+    TRUE            reduce using rule 48 (comp_operator -> GTHAN .)
+    FALSE           reduce using rule 48 (comp_operator -> GTHAN .)
+    ID              reduce using rule 48 (comp_operator -> GTHAN .)
+    LPAREN          reduce using rule 48 (comp_operator -> GTHAN .)
+
+
+state 32
+
+    (12) arith_operation -> LPAREN arith_operator . arith_items RPAREN
+    (18) arith_items -> . arith_item arith_items
+    (19) arith_items -> . empty
+    (21) arith_item -> . NUMBER
+    (22) arith_item -> . arith_operation
+    (20) empty -> .
+    (12) arith_operation -> . LPAREN arith_operator arith_items RPAREN
+
+    NUMBER          shift and go to state 66
+    RPAREN          reduce using rule 20 (empty -> .)
+    LPAREN          shift and go to state 69
+
+    arith_items                    shift and go to state 70
+    arith_operation                shift and go to state 67
+    empty                          shift and go to state 71
+    arith_item                     shift and go to state 68
+
+state 33
+
+    (34) define_variable_operation -> LPAREN DEFINE . ID variable_value RPAREN
+
+    ID              shift and go to state 72
+
+
+state 34
+
+    (1) program -> ID EQUAL . list
+    (3) list -> . arith_operation
+    (4) list -> . print_operation
+    (5) list -> . list_operation
+    (6) list -> . car_operation
+    (7) list -> . cdr_operation
+    (8) list -> . define_variable_operation
+    (9) list -> . comparison_operation
+    (10) list -> . cons_operation
+    (11) list -> . conditional_operation
+    (12) arith_operation -> . LPAREN arith_operator arith_items RPAREN
+    (64) print_operation -> . LPAREN PRINT TEXT RPAREN
+    (23) list_operation -> . LPAREN LIST list_items RPAREN
+    (32) car_operation -> . LPAREN CAR quoted_list RPAREN
+    (33) cdr_operation -> . LPAREN CDR quoted_list RPAREN
+    (34) define_variable_operation -> . LPAREN DEFINE ID variable_value RPAREN
+    (39) comparison_operation -> . LPAREN comp_operator comp_item comp_item RPAREN
+    (65) cons_operation -> . LPAREN CONS cons_items RPAREN
+    (52) conditional_operation -> . LPAREN IF comparison_operation conditional_item conditional_item RPAREN
+
+    LPAREN          shift and go to state 7
+
+    print_operation                shift and go to state 3
+    arith_operation                shift and go to state 1
+    list_operation                 shift and go to state 5
+    car_operation                  shift and go to state 2
+    define_variable_operation      shift and go to state 11
+    cons_operation                 shift and go to state 4
+    list                           shift and go to state 73
+    comparison_operation           shift and go to state 6
+    conditional_operation          shift and go to state 9
+    cdr_operation                  shift and go to state 13
+
+state 35
+
+    (64) print_operation -> LPAREN PRINT TEXT . RPAREN
+
+    RPAREN          shift and go to state 74
+
+
+state 36
+
+    (52) conditional_operation -> LPAREN IF comparison_operation . conditional_item conditional_item RPAREN
+    (53) conditional_item -> . arith_operation
+    (54) conditional_item -> . conditional_operation
+    (55) conditional_item -> . NUMBER
+    (56) conditional_item -> . TEXT
+    (57) conditional_item -> . TRUE
+    (58) conditional_item -> . FALSE
+    (59) conditional_item -> . print_operation
+    (60) conditional_item -> . empty
+    (61) conditional_item -> . ID
+    (12) arith_operation -> . LPAREN arith_operator arith_items RPAREN
+    (52) conditional_operation -> . LPAREN IF comparison_operation conditional_item conditional_item RPAREN
+    (64) print_operation -> . LPAREN PRINT TEXT RPAREN
+    (20) empty -> .
+
+  ! shift/reduce conflict for NUMBER resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+    NUMBER          shift and go to state 80
+    TEXT            shift and go to state 84
+    TRUE            shift and go to state 78
+    FALSE           shift and go to state 77
+    ID              shift and go to state 85
+    LPAREN          shift and go to state 81
+    RPAREN          reduce using rule 20 (empty -> .)
+
+  ! NUMBER          [ reduce using rule 20 (empty -> .) ]
+  ! TEXT            [ reduce using rule 20 (empty -> .) ]
+  ! TRUE            [ reduce using rule 20 (empty -> .) ]
+  ! FALSE           [ reduce using rule 20 (empty -> .) ]
+  ! ID              [ reduce using rule 20 (empty -> .) ]
+  ! LPAREN          [ reduce using rule 20 (empty -> .) ]
+
+    arith_operation                shift and go to state 76
+    print_operation                shift and go to state 79
+    conditional_item               shift and go to state 82
+    conditional_operation          shift and go to state 75
+    empty                          shift and go to state 83
+
+state 37
+
+    (39) comparison_operation -> LPAREN . comp_operator comp_item comp_item RPAREN
+    (46) comp_operator -> . EQUAL
+    (47) comp_operator -> . EQ
+    (48) comp_operator -> . GTHAN
+    (49) comp_operator -> . LTHAN
+    (50) comp_operator -> . GEQUAL
+    (51) comp_operator -> . LEQUAL
+
+    EQUAL           shift and go to state 14
+    EQ              shift and go to state 18
+    GTHAN           shift and go to state 31
+    LTHAN           shift and go to state 16
+    GEQUAL          shift and go to state 29
+    LEQUAL          shift and go to state 20
+
+    comp_operator                  shift and go to state 24
+
+state 38
+
+    (68) cons_item -> TEXT .
+
+    TEXT            reduce using rule 68 (cons_item -> TEXT .)
+    NUMBER          reduce using rule 68 (cons_item -> TEXT .)
+    TRUE            reduce using rule 68 (cons_item -> TEXT .)
+    FALSE           reduce using rule 68 (cons_item -> TEXT .)
+    LPAREN          reduce using rule 68 (cons_item -> TEXT .)
+    RPAREN          reduce using rule 68 (cons_item -> TEXT .)
+
+
+state 39
+
+    (69) cons_item -> NUMBER .
+
+    TEXT            reduce using rule 69 (cons_item -> NUMBER .)
+    NUMBER          reduce using rule 69 (cons_item -> NUMBER .)
+    TRUE            reduce using rule 69 (cons_item -> NUMBER .)
+    FALSE           reduce using rule 69 (cons_item -> NUMBER .)
+    LPAREN          reduce using rule 69 (cons_item -> NUMBER .)
+    RPAREN          reduce using rule 69 (cons_item -> NUMBER .)
+
+
+state 40
+
+    (65) cons_operation -> LPAREN CONS cons_items . RPAREN
+
+    RPAREN          shift and go to state 86
+
+
+state 41
+
+    (71) cons_item -> FALSE .
+
+    TEXT            reduce using rule 71 (cons_item -> FALSE .)
+    NUMBER          reduce using rule 71 (cons_item -> FALSE .)
+    TRUE            reduce using rule 71 (cons_item -> FALSE .)
+    FALSE           reduce using rule 71 (cons_item -> FALSE .)
+    LPAREN          reduce using rule 71 (cons_item -> FALSE .)
+    RPAREN          reduce using rule 71 (cons_item -> FALSE .)
+
+
+state 42
+
+    (72) cons_item -> cons_operation .
+
+    TEXT            reduce using rule 72 (cons_item -> cons_operation .)
+    NUMBER          reduce using rule 72 (cons_item -> cons_operation .)
+    TRUE            reduce using rule 72 (cons_item -> cons_operation .)
+    FALSE           reduce using rule 72 (cons_item -> cons_operation .)
+    LPAREN          reduce using rule 72 (cons_item -> cons_operation .)
+    RPAREN          reduce using rule 72 (cons_item -> cons_operation .)
+
+
+state 43
+
+    (65) cons_operation -> LPAREN . CONS cons_items RPAREN
+
+    CONS            shift and go to state 21
+
+
+state 44
+
+    (70) cons_item -> TRUE .
+
+    TEXT            reduce using rule 70 (cons_item -> TRUE .)
+    NUMBER          reduce using rule 70 (cons_item -> TRUE .)
+    TRUE            reduce using rule 70 (cons_item -> TRUE .)
+    FALSE           reduce using rule 70 (cons_item -> TRUE .)
+    LPAREN          reduce using rule 70 (cons_item -> TRUE .)
+    RPAREN          reduce using rule 70 (cons_item -> TRUE .)
+
+
+state 45
+
+    (67) cons_items -> empty .
+
+    RPAREN          reduce using rule 67 (cons_items -> empty .)
+
+
+state 46
+
+    (66) cons_items -> cons_item . cons_items
+    (66) cons_items -> . cons_item cons_items
+    (67) cons_items -> . empty
+    (68) cons_item -> . TEXT
+    (69) cons_item -> . NUMBER
+    (70) cons_item -> . TRUE
+    (71) cons_item -> . FALSE
+    (72) cons_item -> . cons_operation
+    (20) empty -> .
+    (65) cons_operation -> . LPAREN CONS cons_items RPAREN
+
+    TEXT            shift and go to state 38
+    NUMBER          shift and go to state 39
+    TRUE            shift and go to state 44
+    FALSE           shift and go to state 41
+    RPAREN          reduce using rule 20 (empty -> .)
+    LPAREN          shift and go to state 43
+
+    cons_operation                 shift and go to state 42
+    cons_items                     shift and go to state 87
+    cons_item                      shift and go to state 46
+    empty                          shift and go to state 45
+
+state 47
+
+    (30) list_item -> FALSE .
+
+    TEXT            reduce using rule 30 (list_item -> FALSE .)
+    NUMBER          reduce using rule 30 (list_item -> FALSE .)
+    TRUE            reduce using rule 30 (list_item -> FALSE .)
+    FALSE           reduce using rule 30 (list_item -> FALSE .)
+    QUOTE           reduce using rule 30 (list_item -> FALSE .)
+    RPAREN          reduce using rule 30 (list_item -> FALSE .)
+
+
+state 48
+
+    (29) list_item -> TRUE .
+
+    TEXT            reduce using rule 29 (list_item -> TRUE .)
+    NUMBER          reduce using rule 29 (list_item -> TRUE .)
+    TRUE            reduce using rule 29 (list_item -> TRUE .)
+    FALSE           reduce using rule 29 (list_item -> TRUE .)
+    QUOTE           reduce using rule 29 (list_item -> TRUE .)
+    RPAREN          reduce using rule 29 (list_item -> TRUE .)
+
+
+state 49
+
+    (28) list_item -> quoted_list .
+
+    TEXT            reduce using rule 28 (list_item -> quoted_list .)
+    NUMBER          reduce using rule 28 (list_item -> quoted_list .)
+    TRUE            reduce using rule 28 (list_item -> quoted_list .)
+    FALSE           reduce using rule 28 (list_item -> quoted_list .)
+    QUOTE           reduce using rule 28 (list_item -> quoted_list .)
+    RPAREN          reduce using rule 28 (list_item -> quoted_list .)
+
+
+state 50
+
+    (27) list_item -> NUMBER .
+
+    TEXT            reduce using rule 27 (list_item -> NUMBER .)
+    NUMBER          reduce using rule 27 (list_item -> NUMBER .)
+    TRUE            reduce using rule 27 (list_item -> NUMBER .)
+    FALSE           reduce using rule 27 (list_item -> NUMBER .)
+    QUOTE           reduce using rule 27 (list_item -> NUMBER .)
+    RPAREN          reduce using rule 27 (list_item -> NUMBER .)
+
+
+state 51
+
+    (24) list_items -> list_item . list_items
+    (24) list_items -> . list_item list_items
+    (25) list_items -> . empty
+    (26) list_item -> . TEXT
+    (27) list_item -> . NUMBER
+    (28) list_item -> . quoted_list
+    (29) list_item -> . TRUE
+    (30) list_item -> . FALSE
+    (20) empty -> .
+    (31) quoted_list -> . QUOTE LPAREN list_items RPAREN
+
+    TEXT            shift and go to state 55
+    NUMBER          shift and go to state 50
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 47
+    RPAREN          reduce using rule 20 (empty -> .)
+    QUOTE           shift and go to state 52
+
+    list_item                      shift and go to state 51
+    quoted_list                    shift and go to state 49
+    list_items                     shift and go to state 88
+    empty                          shift and go to state 54
+
+state 52
+
+    (31) quoted_list -> QUOTE . LPAREN list_items RPAREN
+
+    LPAREN          shift and go to state 89
+
+
+state 53
+
+    (23) list_operation -> LPAREN LIST list_items . RPAREN
+
+    RPAREN          shift and go to state 90
+
+
+state 54
+
+    (25) list_items -> empty .
+
+    RPAREN          reduce using rule 25 (list_items -> empty .)
+
+
+state 55
+
+    (26) list_item -> TEXT .
+
+    TEXT            reduce using rule 26 (list_item -> TEXT .)
+    NUMBER          reduce using rule 26 (list_item -> TEXT .)
+    TRUE            reduce using rule 26 (list_item -> TEXT .)
+    FALSE           reduce using rule 26 (list_item -> TEXT .)
+    QUOTE           reduce using rule 26 (list_item -> TEXT .)
+    RPAREN          reduce using rule 26 (list_item -> TEXT .)
+
+
+state 56
+
+    (32) car_operation -> LPAREN CAR quoted_list . RPAREN
+
+    RPAREN          shift and go to state 91
+
+
+state 57
+
+    (45) comp_item -> ID .
+
+    TEXT            reduce using rule 45 (comp_item -> ID .)
+    NUMBER          reduce using rule 45 (comp_item -> ID .)
+    TRUE            reduce using rule 45 (comp_item -> ID .)
+    FALSE           reduce using rule 45 (comp_item -> ID .)
+    ID              reduce using rule 45 (comp_item -> ID .)
+    LPAREN          reduce using rule 45 (comp_item -> ID .)
+    RPAREN          reduce using rule 45 (comp_item -> ID .)
+
+
+state 58
+
+    (42) comp_item -> TRUE .
+
+    TEXT            reduce using rule 42 (comp_item -> TRUE .)
+    NUMBER          reduce using rule 42 (comp_item -> TRUE .)
+    TRUE            reduce using rule 42 (comp_item -> TRUE .)
+    FALSE           reduce using rule 42 (comp_item -> TRUE .)
+    ID              reduce using rule 42 (comp_item -> TRUE .)
+    LPAREN          reduce using rule 42 (comp_item -> TRUE .)
+    RPAREN          reduce using rule 42 (comp_item -> TRUE .)
+
+
+state 59
+
+    (39) comparison_operation -> LPAREN comp_operator comp_item . comp_item RPAREN
+    (40) comp_item -> . TEXT
+    (41) comp_item -> . NUMBER
+    (42) comp_item -> . TRUE
+    (43) comp_item -> . FALSE
+    (44) comp_item -> . length_operation
+    (45) comp_item -> . ID
+    (62) length_operation -> . LPAREN LENGTH TEXT RPAREN
+    (63) length_operation -> . LPAREN LENGTH quoted_list RPAREN
+
+    TEXT            shift and go to state 64
+    NUMBER          shift and go to state 60
+    TRUE            shift and go to state 58
+    FALSE           shift and go to state 61
+    ID              shift and go to state 57
+    LPAREN          shift and go to state 63
+
+    length_operation               shift and go to state 62
+    comp_item                      shift and go to state 92
+
+state 60
+
+    (41) comp_item -> NUMBER .
+
+    TEXT            reduce using rule 41 (comp_item -> NUMBER .)
+    NUMBER          reduce using rule 41 (comp_item -> NUMBER .)
+    TRUE            reduce using rule 41 (comp_item -> NUMBER .)
+    FALSE           reduce using rule 41 (comp_item -> NUMBER .)
+    ID              reduce using rule 41 (comp_item -> NUMBER .)
+    LPAREN          reduce using rule 41 (comp_item -> NUMBER .)
+    RPAREN          reduce using rule 41 (comp_item -> NUMBER .)
+
+
+state 61
+
+    (43) comp_item -> FALSE .
+
+    TEXT            reduce using rule 43 (comp_item -> FALSE .)
+    NUMBER          reduce using rule 43 (comp_item -> FALSE .)
+    TRUE            reduce using rule 43 (comp_item -> FALSE .)
+    FALSE           reduce using rule 43 (comp_item -> FALSE .)
+    ID              reduce using rule 43 (comp_item -> FALSE .)
+    LPAREN          reduce using rule 43 (comp_item -> FALSE .)
+    RPAREN          reduce using rule 43 (comp_item -> FALSE .)
+
+
+state 62
+
+    (44) comp_item -> length_operation .
+
+    TEXT            reduce using rule 44 (comp_item -> length_operation .)
+    NUMBER          reduce using rule 44 (comp_item -> length_operation .)
+    TRUE            reduce using rule 44 (comp_item -> length_operation .)
+    FALSE           reduce using rule 44 (comp_item -> length_operation .)
+    ID              reduce using rule 44 (comp_item -> length_operation .)
+    LPAREN          reduce using rule 44 (comp_item -> length_operation .)
+    RPAREN          reduce using rule 44 (comp_item -> length_operation .)
+
+
+state 63
+
+    (62) length_operation -> LPAREN . LENGTH TEXT RPAREN
+    (63) length_operation -> LPAREN . LENGTH quoted_list RPAREN
+
+    LENGTH          shift and go to state 93
+
+
+state 64
+
+    (40) comp_item -> TEXT .
+
+    TEXT            reduce using rule 40 (comp_item -> TEXT .)
+    NUMBER          reduce using rule 40 (comp_item -> TEXT .)
+    TRUE            reduce using rule 40 (comp_item -> TEXT .)
+    FALSE           reduce using rule 40 (comp_item -> TEXT .)
+    ID              reduce using rule 40 (comp_item -> TEXT .)
+    LPAREN          reduce using rule 40 (comp_item -> TEXT .)
+    RPAREN          reduce using rule 40 (comp_item -> TEXT .)
+
+
+state 65
+
+    (33) cdr_operation -> LPAREN CDR quoted_list . RPAREN
+
+    RPAREN          shift and go to state 94
+
+
+state 66
+
+    (21) arith_item -> NUMBER .
+
+    NUMBER          reduce using rule 21 (arith_item -> NUMBER .)
+    LPAREN          reduce using rule 21 (arith_item -> NUMBER .)
+    RPAREN          reduce using rule 21 (arith_item -> NUMBER .)
+
+
+state 67
+
+    (22) arith_item -> arith_operation .
+
+    NUMBER          reduce using rule 22 (arith_item -> arith_operation .)
+    LPAREN          reduce using rule 22 (arith_item -> arith_operation .)
+    RPAREN          reduce using rule 22 (arith_item -> arith_operation .)
+
+
+state 68
+
+    (18) arith_items -> arith_item . arith_items
+    (18) arith_items -> . arith_item arith_items
+    (19) arith_items -> . empty
+    (21) arith_item -> . NUMBER
+    (22) arith_item -> . arith_operation
+    (20) empty -> .
+    (12) arith_operation -> . LPAREN arith_operator arith_items RPAREN
+
+    NUMBER          shift and go to state 66
+    RPAREN          reduce using rule 20 (empty -> .)
+    LPAREN          shift and go to state 69
+
+    arith_items                    shift and go to state 95
+    arith_operation                shift and go to state 67
+    empty                          shift and go to state 71
+    arith_item                     shift and go to state 68
+
+state 69
+
+    (12) arith_operation -> LPAREN . arith_operator arith_items RPAREN
+    (13) arith_operator -> . ADD
+    (14) arith_operator -> . SUB
+    (15) arith_operator -> . MULT
+    (16) arith_operator -> . DIV
+    (17) arith_operator -> . POW
+
+    ADD             shift and go to state 27
+    SUB             shift and go to state 25
+    MULT            shift and go to state 28
+    DIV             shift and go to state 19
+    POW             shift and go to state 26
+
+    arith_operator                 shift and go to state 32
+
+state 70
+
+    (12) arith_operation -> LPAREN arith_operator arith_items . RPAREN
+
+    RPAREN          shift and go to state 96
+
+
+state 71
+
+    (19) arith_items -> empty .
+
+    RPAREN          reduce using rule 19 (arith_items -> empty .)
+
+
+state 72
+
+    (34) define_variable_operation -> LPAREN DEFINE ID . variable_value RPAREN
+    (35) variable_value -> . TEXT
+    (36) variable_value -> . NUMBER
+    (37) variable_value -> . TRUE
+    (38) variable_value -> . FALSE
+
+    TEXT            shift and go to state 101
+    NUMBER          shift and go to state 97
+    TRUE            shift and go to state 100
+    FALSE           shift and go to state 98
+
+    variable_value                 shift and go to state 99
+
+state 73
+
+    (1) program -> ID EQUAL list .
+
+    $end            reduce using rule 1 (program -> ID EQUAL list .)
+
+
+state 74
+
+    (64) print_operation -> LPAREN PRINT TEXT RPAREN .
+
+    $end            reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    NUMBER          reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    TEXT            reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    TRUE            reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    FALSE           reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    ID              reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    LPAREN          reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+    RPAREN          reduce using rule 64 (print_operation -> LPAREN PRINT TEXT RPAREN .)
+
+
+state 75
+
+    (54) conditional_item -> conditional_operation .
+
+    NUMBER          reduce using rule 54 (conditional_item -> conditional_operation .)
+    TEXT            reduce using rule 54 (conditional_item -> conditional_operation .)
+    TRUE            reduce using rule 54 (conditional_item -> conditional_operation .)
+    FALSE           reduce using rule 54 (conditional_item -> conditional_operation .)
+    ID              reduce using rule 54 (conditional_item -> conditional_operation .)
+    LPAREN          reduce using rule 54 (conditional_item -> conditional_operation .)
+    RPAREN          reduce using rule 54 (conditional_item -> conditional_operation .)
+
+
+state 76
+
+    (53) conditional_item -> arith_operation .
+
+    NUMBER          reduce using rule 53 (conditional_item -> arith_operation .)
+    TEXT            reduce using rule 53 (conditional_item -> arith_operation .)
+    TRUE            reduce using rule 53 (conditional_item -> arith_operation .)
+    FALSE           reduce using rule 53 (conditional_item -> arith_operation .)
+    ID              reduce using rule 53 (conditional_item -> arith_operation .)
+    LPAREN          reduce using rule 53 (conditional_item -> arith_operation .)
+    RPAREN          reduce using rule 53 (conditional_item -> arith_operation .)
+
+
+state 77
+
+    (58) conditional_item -> FALSE .
+
+    NUMBER          reduce using rule 58 (conditional_item -> FALSE .)
+    TEXT            reduce using rule 58 (conditional_item -> FALSE .)
+    TRUE            reduce using rule 58 (conditional_item -> FALSE .)
+    FALSE           reduce using rule 58 (conditional_item -> FALSE .)
+    ID              reduce using rule 58 (conditional_item -> FALSE .)
+    LPAREN          reduce using rule 58 (conditional_item -> FALSE .)
+    RPAREN          reduce using rule 58 (conditional_item -> FALSE .)
+
+
+state 78
+
+    (57) conditional_item -> TRUE .
+
+    NUMBER          reduce using rule 57 (conditional_item -> TRUE .)
+    TEXT            reduce using rule 57 (conditional_item -> TRUE .)
+    TRUE            reduce using rule 57 (conditional_item -> TRUE .)
+    FALSE           reduce using rule 57 (conditional_item -> TRUE .)
+    ID              reduce using rule 57 (conditional_item -> TRUE .)
+    LPAREN          reduce using rule 57 (conditional_item -> TRUE .)
+    RPAREN          reduce using rule 57 (conditional_item -> TRUE .)
+
+
+state 79
+
+    (59) conditional_item -> print_operation .
+
+    NUMBER          reduce using rule 59 (conditional_item -> print_operation .)
+    TEXT            reduce using rule 59 (conditional_item -> print_operation .)
+    TRUE            reduce using rule 59 (conditional_item -> print_operation .)
+    FALSE           reduce using rule 59 (conditional_item -> print_operation .)
+    ID              reduce using rule 59 (conditional_item -> print_operation .)
+    LPAREN          reduce using rule 59 (conditional_item -> print_operation .)
+    RPAREN          reduce using rule 59 (conditional_item -> print_operation .)
+
+
+state 80
+
+    (55) conditional_item -> NUMBER .
+
+    NUMBER          reduce using rule 55 (conditional_item -> NUMBER .)
+    TEXT            reduce using rule 55 (conditional_item -> NUMBER .)
+    TRUE            reduce using rule 55 (conditional_item -> NUMBER .)
+    FALSE           reduce using rule 55 (conditional_item -> NUMBER .)
+    ID              reduce using rule 55 (conditional_item -> NUMBER .)
+    LPAREN          reduce using rule 55 (conditional_item -> NUMBER .)
+    RPAREN          reduce using rule 55 (conditional_item -> NUMBER .)
+
+
+state 81
+
+    (12) arith_operation -> LPAREN . arith_operator arith_items RPAREN
+    (52) conditional_operation -> LPAREN . IF comparison_operation conditional_item conditional_item RPAREN
+    (64) print_operation -> LPAREN . PRINT TEXT RPAREN
+    (13) arith_operator -> . ADD
+    (14) arith_operator -> . SUB
+    (15) arith_operator -> . MULT
+    (16) arith_operator -> . DIV
+    (17) arith_operator -> . POW
+
+    IF              shift and go to state 17
+    PRINT           shift and go to state 15
+    ADD             shift and go to state 27
+    SUB             shift and go to state 25
+    MULT            shift and go to state 28
+    DIV             shift and go to state 19
+    POW             shift and go to state 26
+
+    arith_operator                 shift and go to state 32
+
+state 82
+
+    (52) conditional_operation -> LPAREN IF comparison_operation conditional_item . conditional_item RPAREN
+    (53) conditional_item -> . arith_operation
+    (54) conditional_item -> . conditional_operation
+    (55) conditional_item -> . NUMBER
+    (56) conditional_item -> . TEXT
+    (57) conditional_item -> . TRUE
+    (58) conditional_item -> . FALSE
+    (59) conditional_item -> . print_operation
+    (60) conditional_item -> . empty
+    (61) conditional_item -> . ID
+    (12) arith_operation -> . LPAREN arith_operator arith_items RPAREN
+    (52) conditional_operation -> . LPAREN IF comparison_operation conditional_item conditional_item RPAREN
+    (64) print_operation -> . LPAREN PRINT TEXT RPAREN
+    (20) empty -> .
+
+    NUMBER          shift and go to state 80
+    TEXT            shift and go to state 84
+    TRUE            shift and go to state 78
+    FALSE           shift and go to state 77
+    ID              shift and go to state 85
+    LPAREN          shift and go to state 81
+    RPAREN          reduce using rule 20 (empty -> .)
+
+    arith_operation                shift and go to state 76
+    print_operation                shift and go to state 79
+    conditional_item               shift and go to state 102
+    conditional_operation          shift and go to state 75
+    empty                          shift and go to state 83
+
+state 83
+
+    (60) conditional_item -> empty .
+
+    NUMBER          reduce using rule 60 (conditional_item -> empty .)
+    TEXT            reduce using rule 60 (conditional_item -> empty .)
+    TRUE            reduce using rule 60 (conditional_item -> empty .)
+    FALSE           reduce using rule 60 (conditional_item -> empty .)
+    ID              reduce using rule 60 (conditional_item -> empty .)
+    LPAREN          reduce using rule 60 (conditional_item -> empty .)
+    RPAREN          reduce using rule 60 (conditional_item -> empty .)
+
+
+state 84
+
+    (56) conditional_item -> TEXT .
+
+    NUMBER          reduce using rule 56 (conditional_item -> TEXT .)
+    TEXT            reduce using rule 56 (conditional_item -> TEXT .)
+    TRUE            reduce using rule 56 (conditional_item -> TEXT .)
+    FALSE           reduce using rule 56 (conditional_item -> TEXT .)
+    ID              reduce using rule 56 (conditional_item -> TEXT .)
+    LPAREN          reduce using rule 56 (conditional_item -> TEXT .)
+    RPAREN          reduce using rule 56 (conditional_item -> TEXT .)
+
+
+state 85
+
+    (61) conditional_item -> ID .
+
+    NUMBER          reduce using rule 61 (conditional_item -> ID .)
+    TEXT            reduce using rule 61 (conditional_item -> ID .)
+    TRUE            reduce using rule 61 (conditional_item -> ID .)
+    FALSE           reduce using rule 61 (conditional_item -> ID .)
+    ID              reduce using rule 61 (conditional_item -> ID .)
+    LPAREN          reduce using rule 61 (conditional_item -> ID .)
+    RPAREN          reduce using rule 61 (conditional_item -> ID .)
+
+
+state 86
+
+    (65) cons_operation -> LPAREN CONS cons_items RPAREN .
+
+    $end            reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+    TEXT            reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+    NUMBER          reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+    TRUE            reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+    FALSE           reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+    LPAREN          reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+    RPAREN          reduce using rule 65 (cons_operation -> LPAREN CONS cons_items RPAREN .)
+
+
+state 87
+
+    (66) cons_items -> cons_item cons_items .
+
+    RPAREN          reduce using rule 66 (cons_items -> cons_item cons_items .)
+
+
+state 88
+
+    (24) list_items -> list_item list_items .
+
+    RPAREN          reduce using rule 24 (list_items -> list_item list_items .)
+
+
+state 89
+
+    (31) quoted_list -> QUOTE LPAREN . list_items RPAREN
+    (24) list_items -> . list_item list_items
+    (25) list_items -> . empty
+    (26) list_item -> . TEXT
+    (27) list_item -> . NUMBER
+    (28) list_item -> . quoted_list
+    (29) list_item -> . TRUE
+    (30) list_item -> . FALSE
+    (20) empty -> .
+    (31) quoted_list -> . QUOTE LPAREN list_items RPAREN
+
+    TEXT            shift and go to state 55
+    NUMBER          shift and go to state 50
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 47
+    RPAREN          reduce using rule 20 (empty -> .)
+    QUOTE           shift and go to state 52
+
+    list_item                      shift and go to state 51
+    quoted_list                    shift and go to state 49
+    list_items                     shift and go to state 103
+    empty                          shift and go to state 54
+
+state 90
+
+    (23) list_operation -> LPAREN LIST list_items RPAREN .
+
+    $end            reduce using rule 23 (list_operation -> LPAREN LIST list_items RPAREN .)
+
+
+state 91
+
+    (32) car_operation -> LPAREN CAR quoted_list RPAREN .
+
+    $end            reduce using rule 32 (car_operation -> LPAREN CAR quoted_list RPAREN .)
+
+
+state 92
+
+    (39) comparison_operation -> LPAREN comp_operator comp_item comp_item . RPAREN
+
+    RPAREN          shift and go to state 104
+
+
+state 93
+
+    (62) length_operation -> LPAREN LENGTH . TEXT RPAREN
+    (63) length_operation -> LPAREN LENGTH . quoted_list RPAREN
+    (31) quoted_list -> . QUOTE LPAREN list_items RPAREN
+
+    TEXT            shift and go to state 105
+    QUOTE           shift and go to state 52
+
+    quoted_list                    shift and go to state 106
+
+state 94
+
+    (33) cdr_operation -> LPAREN CDR quoted_list RPAREN .
+
+    $end            reduce using rule 33 (cdr_operation -> LPAREN CDR quoted_list RPAREN .)
+
+
+state 95
+
+    (18) arith_items -> arith_item arith_items .
+
+    RPAREN          reduce using rule 18 (arith_items -> arith_item arith_items .)
+
+
+state 96
+
+    (12) arith_operation -> LPAREN arith_operator arith_items RPAREN .
+
+    $end            reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    NUMBER          reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    TEXT            reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    TRUE            reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    FALSE           reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    ID              reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    LPAREN          reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+    RPAREN          reduce using rule 12 (arith_operation -> LPAREN arith_operator arith_items RPAREN .)
+
+
+state 97
+
+    (36) variable_value -> NUMBER .
+
+    RPAREN          reduce using rule 36 (variable_value -> NUMBER .)
+
+
+state 98
+
+    (38) variable_value -> FALSE .
+
+    RPAREN          reduce using rule 38 (variable_value -> FALSE .)
+
+
+state 99
+
+    (34) define_variable_operation -> LPAREN DEFINE ID variable_value . RPAREN
+
+    RPAREN          shift and go to state 107
+
+
+state 100
+
+    (37) variable_value -> TRUE .
+
+    RPAREN          reduce using rule 37 (variable_value -> TRUE .)
+
+
+state 101
+
+    (35) variable_value -> TEXT .
+
+    RPAREN          reduce using rule 35 (variable_value -> TEXT .)
+
+
+state 102
+
+    (52) conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item . RPAREN
+
+    RPAREN          shift and go to state 108
+
+
+state 103
+
+    (31) quoted_list -> QUOTE LPAREN list_items . RPAREN
+
+    RPAREN          shift and go to state 109
+
+
+state 104
+
+    (39) comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .
+
+    $end            reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    NUMBER          reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    TEXT            reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    TRUE            reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    FALSE           reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    ID              reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    LPAREN          reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+    RPAREN          reduce using rule 39 (comparison_operation -> LPAREN comp_operator comp_item comp_item RPAREN .)
+
+
+state 105
+
+    (62) length_operation -> LPAREN LENGTH TEXT . RPAREN
+
+    RPAREN          shift and go to state 110
+
+
+state 106
+
+    (63) length_operation -> LPAREN LENGTH quoted_list . RPAREN
+
+    RPAREN          shift and go to state 111
+
+
+state 107
+
+    (34) define_variable_operation -> LPAREN DEFINE ID variable_value RPAREN .
+
+    $end            reduce using rule 34 (define_variable_operation -> LPAREN DEFINE ID variable_value RPAREN .)
+
+
+state 108
+
+    (52) conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .
+
+    $end            reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    NUMBER          reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    TEXT            reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    TRUE            reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    FALSE           reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    ID              reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    LPAREN          reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+    RPAREN          reduce using rule 52 (conditional_operation -> LPAREN IF comparison_operation conditional_item conditional_item RPAREN .)
+
+
+state 109
+
+    (31) quoted_list -> QUOTE LPAREN list_items RPAREN .
+
+    TEXT            reduce using rule 31 (quoted_list -> QUOTE LPAREN list_items RPAREN .)
+    NUMBER          reduce using rule 31 (quoted_list -> QUOTE LPAREN list_items RPAREN .)
+    TRUE            reduce using rule 31 (quoted_list -> QUOTE LPAREN list_items RPAREN .)
+    FALSE           reduce using rule 31 (quoted_list -> QUOTE LPAREN list_items RPAREN .)
+    QUOTE           reduce using rule 31 (quoted_list -> QUOTE LPAREN list_items RPAREN .)
+    RPAREN          reduce using rule 31 (quoted_list -> QUOTE LPAREN list_items RPAREN .)
+
+
+state 110
+
+    (62) length_operation -> LPAREN LENGTH TEXT RPAREN .
+
+    RPAREN          reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+    TEXT            reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+    NUMBER          reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+    TRUE            reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+    FALSE           reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+    ID              reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+    LPAREN          reduce using rule 62 (length_operation -> LPAREN LENGTH TEXT RPAREN .)
+
+
+state 111
+
+    (63) length_operation -> LPAREN LENGTH quoted_list RPAREN .
+
+    RPAREN          reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+    TEXT            reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+    NUMBER          reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+    TRUE            reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+    FALSE           reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+    ID              reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+    LPAREN          reduce using rule 63 (length_operation -> LPAREN LENGTH quoted_list RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NUMBER in state 36 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 36 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 36 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 36 resolved as shift
+WARNING: shift/reduce conflict for ID in state 36 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 36 resolved as shift
